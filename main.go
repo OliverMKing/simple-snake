@@ -21,12 +21,13 @@ func main() {
 		Handler: h,
 	}
 
+	// start server with a graceful shutdown that doesn't interrupt connections
 	done := make(chan os.Signal, 1)
 	signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
 
 	go func() {
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Fatalf("server failed: %s", err.Error())
+			log.Fatalf("server failed: %s", err)
 		}
 	}()
 	log.Printf("server started on: %s", srv.Addr)
@@ -39,7 +40,7 @@ func main() {
 	}()
 
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatalf("server shutdown failed: %s", err.Error())
+		log.Fatalf("server shutdown failed: %s", err)
 	}
 	log.Print("server stopped")
 }
