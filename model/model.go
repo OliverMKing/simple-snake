@@ -1,4 +1,4 @@
-package battlesnake
+package model
 
 // based on official api https://docs.battlesnake.com/api
 

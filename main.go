@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"simple-snake/api"
+	"simple-snake/snake"
+)
 
 func main() {
-	fmt.Print("hello world")
+	s := snake.New()
+	server := api.New(s, "8080")
+	server.Run()
 }
