@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"log"
 	"net/http"
 	"os"
@@ -15,9 +16,12 @@ import (
 func main() {
 	s := snake.New()
 	h := api.New(s)
+	var port string
+	flag.StringVar(&port, "port", "8080", "server port")
+	flag.Parse()
 
 	srv := &http.Server{
-		Addr:    ":8080",
+		Addr:    ":" + port,
 		Handler: h,
 	}
 

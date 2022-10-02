@@ -35,6 +35,6 @@ func (s *snake) Info() *model.InfoResp {
 
 func (s *snake) Move(model.GameReq) *model.MoveResp {
 	return &model.MoveResp{
-		Move: "left",
+		Move: "right",
 	}
 }
