@@ -30,7 +30,7 @@ func main() {
 			log.Fatalf("server failed: %s", err)
 		}
 	}()
-	log.Printf("server started on: %s", srv.Addr)
+	log.Printf("server started on: localhost%s", srv.Addr)
 
 	<-done
 	log.Print("server stopping")

@@ -16,7 +16,9 @@ const (
 func New(s snake.Snake) http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", infoHandler(s))
+	mux.HandleFunc("/start", noOp)
 	mux.HandleFunc("/move", moveHandler(s))
+	mux.HandleFunc("/end", noOp)
 	return mux
 }
 
@@ -48,3 +50,5 @@ func moveHandler(s snake.Snake) http.HandlerFunc {
 		}
 	}
 }
+
+func noOp(_ http.ResponseWriter, _ *http.Request) {}
