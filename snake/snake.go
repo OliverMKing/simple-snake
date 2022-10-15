@@ -1,6 +1,10 @@
 package snake
 
-import "simple-snake/model"
+import (
+	"fmt"
+	"math/rand"
+	"simple-snake/model"
+)
 
 const (
 	apiVersion = "1"
@@ -33,8 +37,19 @@ func (s *snake) Info() *model.InfoResp {
 	}
 }
 
-func (s *snake) Move(model.GameReq) *model.MoveResp {
+func (s *snake) Move(m model.GameReq) *model.MoveResp {
+	id := m.You.Id
+
+	moves := validMoves(id, model.GameReqSet(m))
+	if len(moves) == 0 {
+		fmt.Println("No valid moves")
+		return &model.MoveResp{
+			Move: model.Down,
+		}
+	}
+
+	move := moves[rand.Intn(len(moves))]
 	return &model.MoveResp{
-		Move: "right",
+		Move: move,
 	}
 }

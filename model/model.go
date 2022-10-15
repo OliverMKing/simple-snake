@@ -70,6 +70,6 @@ type InfoResp struct {
 }
 
 type MoveResp struct {
-	Move  string `json:"move"`
+	Move  Move   `json:"move"`
 	Shout string `json:"shout,omitempty"`
 }
